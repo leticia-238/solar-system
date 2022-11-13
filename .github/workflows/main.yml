@@ -1,4 +1,4 @@
-name: CI
+name: deploy with gh-pages
 
 on: 
   push:
@@ -7,11 +7,11 @@ on:
   workflow_dispatch:
   
 jobs:
-  build:
+  deployment:
     runs-on: ubuntu-latest
     
     steps:
-      - name: Check out repository code
+      - name: Checkout
         uses: actions/checkout@v3
         
       - name: Use Node.js
@@ -19,21 +19,13 @@ jobs:
         with:
           node-version: '16'
           cache: 'npm'
-          run: echo "Aprendendo github actions"
       
       - name: Install dependencies
-        run: |
-          npm install
-          echo "Depêndencias instaladas"
+        run: npm install
       
-  # deployment:
-  #   runs-on: ubuntu-latest
-  #   environment: production
-    
-  #   steps:
-  #     - name: Deploy with gh-pages
-  #       run: |  
-  #         git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
-  #         npm run deploy -- -u "github-actions-bot <support+actions@github.com>"
-  #       env:
-  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Deploy with gh-pages
+        run: |  
+          git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+          npm run deploy -- -u "github-actions-bot <support+actions@github.com>"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
