@@ -2,8 +2,9 @@ name: deploy with gh-pages
 
 on: 
   push:
-    branches:
-      - main
+    paths:
+      - 'src/**'
+      - 'public/**'
   workflow_dispatch:
   
 jobs:
