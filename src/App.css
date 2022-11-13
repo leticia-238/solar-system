@@ -65,7 +65,7 @@ h1, h2 {
 }
 
 .planet-card {
-  background-image: url('../bkg1.jpg');
+  background-image: url('./images/card-background.jpg');
   background-size: cover;
   box-shadow: 0 0 5px rgb(168, 168, 168);
   width: 300px;
